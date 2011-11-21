@@ -1,0 +1,38 @@
+<script>
+var webSocket = new WebSocket('ws://localhost:3000/');
+
+webSocket.onopen = function(event){
+document.getElementById('time').innerHTML = 'waiting for socket';
+webSocket.send('start');
+};
+
+webSocket.onmessage = function(event){
+var object = JSON.parse(event.data);
+document.getElementById("receiveMsg").innerHTML = object;
+};
+
+webSocket.onclose = function(event){
+document.getElementById('receiveMsg').innerHTML = 'socket closed';
+};
+
+//// メッセージを送る
+function SendMsg() {
+  var msg = document.getElementById("message").value;
+  webSocket.send(msg);
+};
+
+// 切断する
+function DisConnect() {
+  webSocket.send(socket.transport.sessionid + "は切断しました。");
+  webSocket.disconnect();
+};
+
+</script>
+
+<h1>socket.ioのサンプルプログラム</h1>
+<div id="connectId"></div>
+<input type="text" id="message" value="">
+<input type="button" value="メッセージを送る" onclick="SendMsg()">
+<input type="button" value="切断する" onclick="DisConnect()">
+<div id="receiveMsg"></div>
+

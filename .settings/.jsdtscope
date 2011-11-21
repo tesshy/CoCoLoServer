@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="node_modules/express/|node_modules/cradle/node_modules/vows/test/fixtures/isolate/|node_modules/express/node_modules/mime/|node_modules/express/lib/view/|node_modules/cradle/node_modules/vows/lib/|node_modules/express/node_modules/qs/support/should/examples/|node_modules/cradle/node_modules/vows/node_modules/eyes/lib/|node_modules/cradle/lib/cradle/|node_modules/cradle/test/|node_modules/express/lib/router/|node_modules/cradle/node_modules/vows/test/|node_modules/cradle/node_modules/vows/lib/vows/reporters/|node_modules/express/node_modules/qs/test/|node_modules/cradle/node_modules/vows/lib/vows/coverage/|node_modules/express/node_modules/connect/lib/middleware/session/|node_modules/express/node_modules/connect/lib/middleware/|node_modules/express/node_modules/qs/support/should/test/|node_modules/express/lib/|node_modules/express/node_modules/qs/support/expresso/lib/|node_modules/express/node_modules/qs/support/should/|node_modules/express/node_modules/connect/|node_modules/express/node_modules/qs/lib/|node_modules/cradle/node_modules/vows/lib/vows/|node_modules/express/node_modules/qs/support/expresso/test/|node_modules/cradle/node_modules/vows/node_modules/eyes/test/|node_modules/cradle/node_modules/vargs/lib/|node_modules/cradle/test/helpers/|node_modules/cradle/lib/|node_modules/express/node_modules/qs/support/should/lib/|node_modules/cradle/node_modules/vows/lib/assert/|node_modules/express/node_modules/qs/|node_modules/express/node_modules/connect/lib/|node_modules/express/node_modules/qs/support/expresso/test/serial/" kind="src" path=""/>
+	<classpathentry excluding="cradle/" kind="src" path="node_modules/cradle/lib"/>
+	<classpathentry kind="src" path="node_modules/cradle/lib/cradle"/>
+	<classpathentry kind="src" path="node_modules/cradle/node_modules/vargs/lib"/>
+	<classpathentry excluding="vows/reporters/|vows/coverage/|vows/|assert/" kind="src" path="node_modules/cradle/node_modules/vows/lib"/>
+	<classpathentry kind="src" path="node_modules/cradle/node_modules/vows/lib/assert"/>
+	<classpathentry excluding="reporters/|coverage/" kind="src" path="node_modules/cradle/node_modules/vows/lib/vows"/>
+	<classpathentry kind="src" path="node_modules/cradle/node_modules/vows/lib/vows/coverage"/>
+	<classpathentry kind="src" path="node_modules/cradle/node_modules/vows/lib/vows/reporters"/>
+	<classpathentry kind="src" path="node_modules/cradle/node_modules/vows/node_modules/eyes/lib"/>
+	<classpathentry kind="src" path="node_modules/cradle/node_modules/vows/node_modules/eyes/test"/>
+	<classpathentry excluding="fixtures/isolate/" kind="src" path="node_modules/cradle/node_modules/vows/test"/>
+	<classpathentry kind="src" path="node_modules/cradle/node_modules/vows/test/fixtures/isolate"/>
+	<classpathentry excluding="helpers/" kind="src" path="node_modules/cradle/test"/>
+	<classpathentry kind="src" path="node_modules/cradle/test/helpers"/>
+	<classpathentry excluding="node_modules/mime/|lib/view/|node_modules/qs/support/should/examples/|lib/router/|node_modules/qs/test/|node_modules/connect/lib/middleware/session/|node_modules/connect/lib/middleware/|node_modules/qs/support/should/test/|lib/|node_modules/qs/support/expresso/lib/|node_modules/qs/support/should/|node_modules/connect/|node_modules/qs/lib/|node_modules/qs/support/expresso/test/|node_modules/qs/support/should/lib/|node_modules/qs/|node_modules/connect/lib/|node_modules/qs/support/expresso/test/serial/" kind="src" path="node_modules/express"/>
+	<classpathentry excluding="view/|router/" kind="src" path="node_modules/express/lib"/>
+	<classpathentry kind="src" path="node_modules/express/lib/router"/>
+	<classpathentry kind="src" path="node_modules/express/lib/view"/>
+	<classpathentry excluding="lib/middleware/session/|lib/middleware/|lib/" kind="src" path="node_modules/express/node_modules/connect"/>
+	<classpathentry excluding="middleware/session/|middleware/" kind="src" path="node_modules/express/node_modules/connect/lib"/>
+	<classpathentry excluding="session/" kind="src" path="node_modules/express/node_modules/connect/lib/middleware"/>
+	<classpathentry kind="src" path="node_modules/express/node_modules/connect/lib/middleware/session"/>
+	<classpathentry kind="src" path="node_modules/express/node_modules/mime"/>
+	<classpathentry excluding="support/should/examples/|test/|support/should/test/|support/expresso/lib/|support/should/|lib/|support/expresso/test/|support/should/lib/|support/expresso/test/serial/" kind="src" path="node_modules/express/node_modules/qs"/>
+	<classpathentry kind="src" path="node_modules/express/node_modules/qs/lib"/>
+	<classpathentry kind="src" path="node_modules/express/node_modules/qs/support/expresso/lib"/>
+	<classpathentry excluding="serial/" kind="src" path="node_modules/express/node_modules/qs/support/expresso/test"/>
+	<classpathentry kind="src" path="node_modules/express/node_modules/qs/support/expresso/test/serial"/>
+	<classpathentry excluding="examples/|test/|lib/" kind="src" path="node_modules/express/node_modules/qs/support/should"/>
+	<classpathentry kind="src" path="node_modules/express/node_modules/qs/support/should/examples"/>
+	<classpathentry kind="src" path="node_modules/express/node_modules/qs/support/should/lib"/>
+	<classpathentry kind="src" path="node_modules/express/node_modules/qs/support/should/test"/>
+	<classpathentry kind="src" path="node_modules/express/node_modules/qs/test"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
