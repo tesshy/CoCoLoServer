@@ -92,10 +92,10 @@ function SURFMatching(req, ret){
 		var flann = require('../node_FLANNMatcher/build/Release/FLANNMatcher');
 		var m = new flann.FLANNMatcher();
 		//var mn = m.getMatchedObject(req.query.locationID + '.xml', 'descriptors.xml');
-		var mn = m.getMatchedObject(req.body.locationID + '.xml', req.body.rows, req.body.cols, req.body.type, req.body.dump);
+		//var mn = m.getMatchedObject(req.body.locationID + '.xml', req.body.rows, req.body.cols, req.body.type, req.body.dump);
+		var mn = m.getMatchedList(req.body.locationID + '.xml', req.body.rows, req.body.cols, req.body.type, req.body.dump);
 
 		console.log(req.body.locationID + '.xml' + "," + mn);
-
 		/** JSON Parsing with Location Information */
 		var json_li = "";
 		var op_li = {
@@ -110,26 +110,55 @@ function SURFMatching(req, ret){
 				var li = JSON.parse(json_li);
 				console.log(li);
 
-				/** JSON Parsing with Image Information */
-				console.log('get Image Information:' + li.image_informations[mn]);
-				var ii_url = url.parse(li.image_informations[mn]);
-				var json_ii = "";
-				var op_ii = {
-					host: ii_url.hostname == 'localhost' ? '127.0.0.1' : ii_url.host,
-					port: ii_url.port,
-					path: ii_url.pathname
-				};
-				http.get(op_ii, function(res) {
-					res.on('data', function(data) {
-						json_ii += data.toString('utf8');
-					}).on('end', function() {
-						var ii = JSON.parse(json_ii);
-						console.log(ii);
+				if(typeof(mn)=="object"){
+					console.log('matched List:' + mn);
 
-						/** return Image Information section "title" */
-						ret.send(json_ii);
+					var ucodeList = new Object();
+					for(var i = 0; i<mn.length; i++){						
+						if(li.ucodes[mn[i]]=="") continue;
+
+						if(ucodeList[li.ucodes[mn[i]]]==null){
+							ucodeList[li.ucodes[mn[i]]] = 1;
+						}else{
+							ucodeList[li.ucodes[mn[i]]]++;
+						}
+					}
+
+					var ucodeCount = new Array();
+					for (var ucode in ucodeList) {
+						ucodeCount.push({key:ucode,value:ucodeList[ucode]})
+						
+					}
+					ucodeCount.sort( function( a, b ) { return a.value - b.value; } );
+					console.log(ucodeCount);
+					
+					
+					var matchedImage = ucodeCount.pop();
+					var kokosilUrl = "http://ginza.kokosil.net/ja/place/" + matchedImage.key;
+					var returnJson = {"kokosilDirectLink":kokosilUrl};
+					ret.send(JSON.stringify(returnJson));
+				}else{
+					/** JSON Parsing with Image Information */
+					console.log('get Image Information:' + li.image_informations[mn]);
+					var ii_url = url.parse(li.image_informations[mn]);
+					var json_ii = "";
+					var op_ii = {
+						host: ii_url.hostname == 'localhost' ? '127.0.0.1' : ii_url.host,
+						port: ii_url.port,
+						path: ii_url.pathname
+					};
+					http.get(op_ii, function(res) {
+						res.on('data', function(data) {
+							json_ii += data.toString('utf8');
+						}).on('end', function() {
+							var ii = JSON.parse(json_ii);
+							console.log(ii);
+
+							/** return Image Information section "title" */
+							ret.send(json_ii);
+						});
 					});
-				});
+				}
 			});
 		});
 	});
