@@ -1,0 +1,4 @@
+<div data-role="collapsible" data-collapsed="true">
+	 <h3><%- contentspartial.title %></h3>
+	 <p><%- contentspartial.article %></p>
+</div>

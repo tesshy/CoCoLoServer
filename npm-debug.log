@@ -1,0 +1,184 @@
+info it worked if it ends with ok
+verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'felixge-couchdb' ]
+info using npm@1.0.104
+info using node@v0.5.10
+verbose config file /home/tesshi/.npmrc
+verbose config file /usr/local/etc/npmrc
+verbose config file /usr/local/lib/node_modules/npm/npmrc
+silly testEngine { name: 'application-name',
+silly testEngine   version: '0.0.1',
+silly testEngine   private: true,
+silly testEngine   dependencies: { express: '2.4.6', jade: '>= 0.0.1' },
+silly testEngine   _id: 'application-name@0.0.1',
+silly testEngine   devDependencies: {},
+silly testEngine   engines: { node: '*' },
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.104',
+silly testEngine   _nodeVersion: 'v0.5.10',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /home/tesshi/CoCoLoServer/package.json
+verbose loadDefaults application-name@0.0.1
+silly testEngine { name: 'jade',
+silly testEngine   description: 'Jade template engine',
+silly testEngine   version: '0.16.4',
+silly testEngine   author: { name: 'TJ Holowaychuk', email: 'tj@vision-media.ca' },
+silly testEngine   repository: { type: 'git', url: 'git://github.com/visionmedia/jade.git' },
+silly testEngine   main: './index.js',
+silly testEngine   bin: { jade: './bin/jade' },
+silly testEngine   dependencies: { commander: '0.2.x', mkdirp: '>= 0.0.7' },
+silly testEngine   devDependencies: 
+silly testEngine    { expresso: '0.9.2',
+silly testEngine      'coffee-script': '>= 0.0.1',
+silly testEngine      sass: '>= 0.0.1',
+silly testEngine      less: '>= 0.0.1',
+silly testEngine      markdown: '>= 0.0.1',
+silly testEngine      stylus: '>= 0.0.1',
+silly testEngine      uubench: '0.0.1',
+silly testEngine      'uglify-js': '>= 1.0.7' },
+silly testEngine   scripts: { prepublish: 'npm prune' },
+silly testEngine   engines: { node: '>= 0.1.98' },
+silly testEngine   _id: 'jade@0.16.4',
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.104',
+silly testEngine   _nodeVersion: 'v0.5.10',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /home/tesshi/CoCoLoServer/node_modules/jade/package.json
+verbose loadDefaults jade@0.16.4
+silly testEngine { name: 'websocket',
+silly testEngine   description: 'Websocket Client & Server Library tracking the latest protocol drafts from the IETF.',
+silly testEngine   keywords: [ 'websocket', 'socket', 'networking', 'comet', 'push' ],
+silly testEngine   author: { name: 'Brian McKelvey', email: 'brian@worlize.com' },
+silly testEngine   version: '1.0.0',
+silly testEngine   repository: 
+silly testEngine    { type: 'git',
+silly testEngine      url: 'git://github.com/Worlize/WebSocket-Node.git' },
+silly testEngine   engines: { node: '>=0.4.7' },
+silly testEngine   main: 'index',
+silly testEngine   directories: { lib: './lib' },
+silly testEngine   _id: 'websocket@1.0.0',
+silly testEngine   dependencies: {},
+silly testEngine   devDependencies: {},
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.104',
+silly testEngine   _nodeVersion: 'v0.5.10',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /home/tesshi/CoCoLoServer/node_modules/websocket/package.json
+verbose loadDefaults websocket@1.0.0
+silly testEngine { name: 'cradle',
+silly testEngine   description: 'the high-level, caching, CouchDB library',
+silly testEngine   url: 'http://cloudhead.io/cradle',
+silly testEngine   keywords: [ 'couchdb', 'database', 'couch' ],
+silly testEngine   author: { name: 'Alexis Sellier', email: 'self@cloudhead.net' },
+silly testEngine   contributors: [],
+silly testEngine   dependencies: { vargs: '>=0.1.0', vows: '>=0.5.4' },
+silly testEngine   devDependencies: { async: '~0.1.x', request: '~2.1.1' },
+silly testEngine   version: '0.5.7',
+silly testEngine   main: './lib/cradle',
+silly testEngine   directories: { test: './test' },
+silly testEngine   engines: { node: '>=0.3.6' },
+silly testEngine   _id: 'cradle@0.5.7',
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.104',
+silly testEngine   _nodeVersion: 'v0.5.10',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /home/tesshi/CoCoLoServer/node_modules/cradle/package.json
+verbose loadDefaults cradle@0.5.7
+silly testEngine { name: 'formidable',
+silly testEngine   version: '1.0.7',
+silly testEngine   dependencies: {},
+silly testEngine   devDependencies: 
+silly testEngine    { gently: '0.8.0',
+silly testEngine      far: '0.0.7',
+silly testEngine      'fast-or-slow': '0.0.5',
+silly testEngine      findit: '0.1.1',
+silly testEngine      hashish: '0.0.4' },
+silly testEngine   directories: { lib: './lib' },
+silly testEngine   main: './lib/index',
+silly testEngine   engines: { node: '*' },
+silly testEngine   _id: 'formidable@1.0.7',
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.104',
+silly testEngine   _nodeVersion: 'v0.5.10',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /home/tesshi/CoCoLoServer/node_modules/formidable/package.json
+verbose loadDefaults formidable@1.0.7
+silly testEngine { name: 'express',
+silly testEngine   description: 'Sinatra inspired web development framework',
+silly testEngine   version: '2.4.6',
+silly testEngine   author: { name: 'TJ Holowaychuk', email: 'tj@vision-media.ca' },
+silly testEngine   contributors: 
+silly testEngine    [ { name: 'TJ Holowaychuk', email: 'tj@vision-media.ca' },
+silly testEngine      { name: 'Aaron Heckmann',
+silly testEngine        email: 'aaron.heckmann+github@gmail.com' },
+silly testEngine      { name: 'Ciaran Jessup', email: 'ciaranj@gmail.com' },
+silly testEngine      { name: 'Guillermo Rauch', email: 'rauchg@gmail.com' } ],
+silly testEngine   dependencies: { connect: '>= 1.5.2 < 2.0.0', mime: '>= 0.0.1', qs: '>= 0.3.1' },
+silly testEngine   devDependencies: 
+silly testEngine    { 'connect-form': '0.2.1',
+silly testEngine      ejs: '0.4.2',
+silly testEngine      expresso: '0.7.2',
+silly testEngine      hamljs: '0.5.1',
+silly testEngine      jade: '0.11.0',
+silly testEngine      stylus: '0.13.0',
+silly testEngine      should: '0.2.1',
+silly testEngine      'express-messages': '0.0.2',
+silly testEngine      'node-markdown': '>= 0.0.1',
+silly testEngine      'connect-redis': '>= 0.0.1' },
+silly testEngine   keywords: [ 'framework', 'sinatra', 'web', 'rest', 'restful' ],
+silly testEngine   repository: { type: 'git', url: 'git://github.com/visionmedia/express.git' },
+silly testEngine   main: 'index',
+silly testEngine   bin: { express: './bin/express' },
+silly testEngine   scripts: { test: 'make test', prepublish: 'npm prune' },
+silly testEngine   engines: { node: '>= 0.4.1 < 0.5.0' },
+silly testEngine   _id: 'express@2.4.6',
+silly testEngine   _engineSupported: false,
+silly testEngine   _npmVersion: '1.0.104',
+silly testEngine   _nodeVersion: 'v0.5.10',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /home/tesshi/CoCoLoServer/node_modules/express/package.json
+verbose loadDefaults express@2.4.6
+silly testEngine { name: 'ejs',
+silly testEngine   description: 'Embedded JavaScript templates',
+silly testEngine   version: '0.4.3',
+silly testEngine   author: { name: 'TJ Holowaychuk', email: 'tj@vision-media.ca' },
+silly testEngine   keywords: [ 'template', 'engine', 'ejs' ],
+silly testEngine   main: './lib/ejs.js',
+silly testEngine   _id: 'ejs@0.4.3',
+silly testEngine   dependencies: {},
+silly testEngine   devDependencies: {},
+silly testEngine   engines: { node: '*' },
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.104',
+silly testEngine   _nodeVersion: 'v0.5.10',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /home/tesshi/CoCoLoServer/node_modules/ejs/package.json
+verbose loadDefaults ejs@0.4.3
+verbose from cache /home/tesshi/CoCoLoServer/package.json
+verbose into /home/tesshi/CoCoLoServer [ 'felixge-couchdb' ]
+verbose cache add felixge-couchdb
+verbose cache add [ 'felixge-couchdb', null ]
+silly cache add: name, spec, args [ undefined, 'felixge-couchdb', [ 'felixge-couchdb', null ] ]
+verbose parsed url { pathname: 'felixge-couchdb', href: 'felixge-couchdb' }
+info addNamed [ 'felixge-couchdb', '' ]
+verbose addNamed [ null, '' ]
+verbose GET felixge-couchdb
+verbose raw, before any munging felixge-couchdb
+verbose url resolving [ 'https://registry.npmjs.org/', './felixge-couchdb' ]
+verbose url resolved https://registry.npmjs.org/felixge-couchdb
+silly get cb [ 404,
+silly get cb   { server: 'CouchDB/1.1.0 (Erlang OTP/R14B04)',
+silly get cb     date: 'Mon, 21 Nov 2011 04:54:13 GMT',
+silly get cb     'content-type': 'application/json',
+silly get cb     'content-length': '52',
+silly get cb     'cache-control': 'must-revalidate' } ]
+ERR! 404 'felixge-couchdb' is not in the npm registry.
+ERR! 404 You could maybe bug the author to publish it
+ERR! 404 Note that you can also install from a tarball or folder.
+ERR! 
+ERR! System Linux 2.6.18-238.5.1.el5.028stab085.3
+ERR! command "node" "/usr/local/bin/npm" "install" "felixge-couchdb"
+ERR! cwd /home/tesshi/CoCoLoServer
+ERR! node -v v0.5.10
+ERR! npm -v 1.0.104
+ERR! code E404
+verbose exit [ 1, true ]
