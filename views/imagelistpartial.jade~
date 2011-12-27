@@ -1,8 +1,0 @@
-section.imagelistpartial
- a("href"="http://localhost:5984/_utils/document.html?image_information/" + imagelistpartial.id)
-  h2=imagelistpartial.id
- p="locationID:" + imagelistpartial.value.locationID
- each val,key in imagelistpartial.value._attachments
-  p="attachements:" + key
-  img("src"="http://localhost:5984/image_information/"+ imagelistpartial.id + "/" + key)
- hr
