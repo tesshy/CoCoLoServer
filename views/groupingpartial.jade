@@ -1,0 +1,11 @@
+section.groupingpartial
+ input(type='checkbox',value=groupingpartial.id,name='grouping')
+ a("href"="http://localhost:5984/_utils/document.html?image_information/" + groupingpartial.id)
+  h2=groupingpartial.id
+ p="locationID:" + groupingpartial.value.locationID
+ p="Title:" + groupingpartial.value.title
+ each val,key in groupingpartial.value._attachments
+  p="attachements:" + key
+  img("src"="http://localhost:5984/image_information/"+ groupingpartial.id + "/" + key)
+ hr
+
