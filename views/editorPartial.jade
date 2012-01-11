@@ -1,8 +1,24 @@
-section.editorPartial
- hr
- form
+div(id=editorPartial.value._id, style='border-style: solid; margin: 30px;')
+ form()
+  label(name='_id')=editorPartial.value._id
+  br
+  label(name='_rev')=editorPartial.value._rev
+  br
   -for(var key in editorPartial.value)
-   label=key 
-   input(type='text',name=key,value=editorPartial.value[key],size='100')
-   br
+   -if(key == '_id' || key == '_rev')
+    -continue
 
+   -if(key == 'kokosil_longitude')
+    div(style="clear: both; float:right;")
+     image(src='http://maps.google.com/maps/api/staticmap?&zoom=18&size=400x400&sensor=false&markers=' + editorPartial.value.kokosil_latitude + ',' + editorPartial.value.kokosil_longitude)
+
+   -if(key == '_attachments')
+    -for(var atch in editorPartial.value._attachments)
+     image(src='http://localhost:5984/image_information/' + editorPartial.value._id + '/' + atch)
+     br
+    -continue
+
+   label(id=editorPartial.value._id)=key
+   input(type='text',id=editorPartial.value._id,name=key,value=editorPartial.value[key],size='100',onchange='postTo(this)')
+   br
+  input(type='text',id='addKey',size='10',onchange='addColumn(this)')

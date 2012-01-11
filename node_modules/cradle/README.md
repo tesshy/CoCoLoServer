@@ -3,6 +3,12 @@ cradle
 
 A high-level, caching, CouchDB client for Node.js
 
+notice
+------
+
+The Original is [cloudhead/cradle](https://github.com/cloudhead/cradle).
+This repository add the GeoCouch support from [dthompson/cradle](https://github.com/dthompson/cradle/blob/add_spatial_support/lib/cradle.js).
+
 introduction
 ------------
 

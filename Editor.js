@@ -1,7 +1,6 @@
 var cradle = require('cradle');
 var imageDB = new(cradle.Connection)().database('image_information');
 var locationDB = new(cradle.Connection)().database('location_information');
-var objectDB = new(cradle.Connection)().database('object_information');
 var formidable = require('formidable');
 
 exports.Editor = function(app){
@@ -29,23 +28,24 @@ exports.Editor = function(app){
 					title:"locationID:" + locationID + " ucode:" + ucode,
 					editor_res:res
 				});
-				console.log(res);
-				console.log("-------------------");
+				//console.log(res);
+				//console.log("-------------------");
 			}
 		});
 	});
 	
-	// app.post('/grouping', function(req, ret) {
-	// 	console.log(req.body);
-	// 	objectDB.save(req.body.groupName,
-	// 				  {name:req.body.groupName,
-	// 				   group:req.body.grouping},
-	// 				  function (err, res) {
-	// 					  if(!err){
-	// 						  ret.redirect('./grouping');
-	// 					  }
-	// 				  });
-	// });
+  	app.post('/editor', function(req, ret) {
+		console.log(req.body);
+		imageDB.merge(req.body,
+					 function (err, res) {
+						 if(err){
+							 console.log(err);
+						 }else{
+							 console.log(res);
+							 ret.json(res); 
+						 }
+					 });
+	});
 };
 
   // var cradle = require('cradle');
