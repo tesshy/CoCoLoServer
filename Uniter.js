@@ -36,6 +36,34 @@ function calcBoundingBox(query){
     return {"bbox":bbox};
 };
 
+function calcBoundingBox(in_lon,in_lat,in_hErr){
+    if(in_lon == null || in_lat == null)
+        return {"bbox":"-180,-90,180,90"};
+    
+    // var lat = Number(query.latitude)*Math.PI/180;
+    // var lon = Number(query.longitude)*Math.PI/180;
+    var lat = Number(in_lat);
+    var lon = Number(in_lon);
+    var hErr = Number(in_hErr);
+    /** Error for no ERROR argment */
+    if(hErr == null) hErr=50;
+    var dir = 45 * Math.PI / 180;
+    var pD = 0.00027778 / 25; // 25 = 0.00027778 Deg
+    
+    var dlon = hErr * Math.sin(dir) * pD;
+    var dlat = hErr * Math.cos(dir) * pD;
+    
+    var lon1 = lon - dlon;
+    var lat1 = lat - dlat;
+
+    var lon2 = lon + dlon;
+    var lat2 = lat + dlat;
+    
+    var bbox = String(lon1)+','+String(lat1) + ',' + String(lon2) + ',' + String(lat2);
+    return {"bbox":bbox};
+};
+
+
 function geoDistance(lat1, lng1, lat2, lng2, precision) {
     // 引数　precision は小数点以下の桁数（距離の精度）
     var distance = 0;
@@ -75,6 +103,15 @@ function uniteSURF(res, fields){
 
     for (var i=0; i<res.length; i++) {
         //console.log(res[i].id);
+        if(fields.floor == null)
+            fields['floor'] = '0'; // フロア指定がなかったら、とりあえず地上として扱う。
+
+        if(res[i].value.floor == null)
+            res[i].value.floor = 0;
+
+        if(Number(res[i].value.floor) != Number(fields.floor)) 
+            continue;
+
         for(var image in res[i].value.attachments){
             IDList.push(res[i].id);
             ucodes.push(res[i].value.ucode);
@@ -115,7 +152,7 @@ function uniteSURF(res, fields){
 exports.Uniter = function(app){
 	app.get('/uniter',function(req, ret){
 		console.log(req.query); // for logging
-
+        
         if(req.query.locationID!=null){
             var mapFunctionString = "function(doc){if(doc.locationID ==\'" + req.query.locationID + "\'){emit(doc._id, {ucode:doc.ucode,attachments:doc._attachments});}}";
             var map = { map:mapFunctionString};
@@ -150,7 +187,6 @@ exports.Uniter = function(app){
                             calcBoundingBox(req.query),
                             function(err, res) {
                                 if(err){
-                                    sys.puts("Error: "+sys.inspect(er));
                                     ret.send("error");
                                     return;
                                 }else{
@@ -162,8 +198,65 @@ exports.Uniter = function(app){
                                    // console.log(calcBoundingBox(req.query));
                                 }
                             });
-        }
-	});
+        }});
+
+        app.post('/uniter',function(req, ret){
+            console.log(req.query);
+            var floor;
+            req.query.floor == null ? floor = 0 : floor = Number(req.query.floor);
+
+
+            var geoJSON = JSON.parse(req.rawBody,'utf8');
+            var points = new Array();
+            
+            console.log(req.rawBody); // for logging
+
+            var hErr = 40.0; //単位はメートル。銀座地下だとこんなもんだ
+            
+            var queries = new Array();
+            var bboxs = new Array();
+            
+            for(var i=0; i < geoJSON.features.length; i++){
+                var lon = geoJSON.features[i].geometry.coordinates[0];
+                var lat = geoJSON.features[i].geometry.coordinates[1];
+                var bbox = calcBoundingBox(lon,lat,hErr);
+                bbox.lat = lat;
+                bbox.lon = lon;
+                
+                //console.log(bbox);
+
+                bboxs.push(bbox);
+            }
+            
+            
+            var u = function(bbox){
+                imageDB.spatial("geo/pointsImage",
+                                bbox,
+                                function(err, res){
+                                    if(err){
+                                        ret.send("error");
+                                        return;
+                                    }else{
+                                        //console.log(res);
+                                        //console.log(bbox);
+                                        // console.log(res);
+                                        // console.log('--------------------');
+                                        console.log(uniteSURF(res,{'longitude':bbox.lon,
+                                                                   'latitude':bbox.lat,
+                                                                   'floor':floor,
+                                                                   'type':'Virtual',
+                                                                   'horizontalError':hErr}));
+                                    }
+                                });
+            }
+
+            
+            for (var i=0; i < bboxs.length; i++) {
+                u(bboxs[i]);
+            };
+            
+        });
+
 };
 
 // var cradle = require('cradle');
