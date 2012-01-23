@@ -9,7 +9,7 @@ const II_URL = "http://127.0.0.1:5984/image_information/";
 
 
 function calcBoundingBox(query){
-    console.log(query);
+    //console.log(query);
     if(query.latitude == null || query.longitude == null)
         return {"bbox":"-180,-90,180,90"};
     
@@ -19,7 +19,7 @@ function calcBoundingBox(query){
     var lon = Number(query.longitude);
     var hErr = Number(query.horizontalError);
     /** Error for no ERROR argment */
-    if(hErr == null) hErr=50;
+    if(hErr == null) hErr=10;
     var dir = 45 * Math.PI / 180;
     var pD = 0.00027778 / 25; // 25 = 0.00027778 Deg
     
@@ -46,7 +46,7 @@ function calcBoundingBox(in_lon,in_lat,in_hErr){
     var lon = Number(in_lon);
     var hErr = Number(in_hErr);
     /** Error for no ERROR argment */
-    if(hErr == null) hErr=50;
+    if(hErr == null) hErr=10;
     var dir = 45 * Math.PI / 180;
     var pD = 0.00027778 / 25; // 25 = 0.00027778 Deg
     
@@ -119,10 +119,12 @@ function uniteSURF(res, fields){
             ImageList.push(II_URL + res[i].id + "/" + image);
         }
     }
-    console.log(IDList);console.log(ImageList);
+    //console.log(IDList);console.log(ImageList);
 
     /** calc SURF-FLANN DB */
     var path = fpd.calcSURF(ImageList);
+    //delete fpd;
+
     //console.log(path);
 
     fields['uploadDate'] = new Date();
@@ -131,6 +133,13 @@ function uniteSURF(res, fields){
     
     locationDB.save(fields,
                     function(err, res) {
+                        if(err){
+		                    console.log("locationDB::save::NG");
+		                }else{
+		                    console.log("locationDB::save::OK");
+                            console.log(fields);
+		                }
+
                         console.log(res);
                         locationDB.saveAttachment(
                             res.id,
@@ -139,14 +148,14 @@ function uniteSURF(res, fields){
                             "application/xml",
                             fs.readFileSync(path),
                             function(err, res) {
-		                        console.log("MatchingDB attached.");
+                                if(err){
+                                    console.log("locationDB::AttachSave::NG");
+                                }else{
+		                            console.log("locationDB::AttachSave::OK");
+                                }
                             }); 
-		                if(err){
-		                    return("NG");
-		                }else{
-		                    return ("OK");
-		                }
                     });
+    
 };
 
 exports.Uniter = function(app){
@@ -202,17 +211,18 @@ exports.Uniter = function(app){
 
         app.post('/uniter',function(req, ret){
             console.log(req.query);
-            var floor;
+
+            var floor; // フロア(高さ)
             req.query.floor == null ? floor = 0 : floor = Number(req.query.floor);
 
+            var hErr; //誤差半径
+            req.query.hErr == null ? hErr=25 : hErr = Number(req.query.hErr);
 
             var geoJSON = JSON.parse(req.rawBody,'utf8');
             var points = new Array();
             
-            console.log(req.rawBody); // for logging
+            //console.log(req.rawBody); // for logging
 
-            var hErr = 40.0; //単位はメートル。銀座地下だとこんなもんだ
-            
             var queries = new Array();
             var bboxs = new Array();
             
@@ -222,9 +232,6 @@ exports.Uniter = function(app){
                 var bbox = calcBoundingBox(lon,lat,hErr);
                 bbox.lat = lat;
                 bbox.lon = lon;
-                
-                //console.log(bbox);
-
                 bboxs.push(bbox);
             }
             
@@ -237,15 +244,15 @@ exports.Uniter = function(app){
                                         ret.send("error");
                                         return;
                                     }else{
-                                        //console.log(res);
-                                        //console.log(bbox);
+                                        // console.log(res);
+                                        // console.log(bbox);
                                         // console.log(res);
                                         // console.log('--------------------');
-                                        console.log(uniteSURF(res,{'longitude':bbox.lon,
-                                                                   'latitude':bbox.lat,
-                                                                   'floor':floor,
-                                                                   'type':'Virtual',
-                                                                   'horizontalError':hErr}));
+                                        uniteSURF(res,{'longitude':bbox.lon,
+                                                       'latitude':bbox.lat,
+                                                       'floor':floor,
+                                                       'type':'Virtual',
+                                                       'horizontalError':hErr});
                                     }
                                 });
             }

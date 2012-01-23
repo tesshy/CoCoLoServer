@@ -43,4 +43,3 @@ for(var num = 0; num < 60; num++){
 	    }
     });
 }
-

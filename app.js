@@ -7,12 +7,13 @@ var app = module.exports = express.createServer();
 var cradle = require('cradle');
 var imageDB = new(cradle.Connection)().database('image_information');
 var locationDB = new(cradle.Connection)().database('location_information');
+var logDB = new(cradle.Connection)().database('log');
 var formidable = require('formidable');
 
 var editor = require('./Editor.js');
 var uniter = require('./Uniter.js');
 var matcher = require('./Matcher.js');
-
+var maps = require('./Maps.js')
 //var matcher = require('/Users/tesshy/sakamura-lab.org/Doctor/CoCoLo/Development/FLANNMatcher_node/build/default/node_FLANNMatcher');
 //var m = new tmp.node_FLANNMatcher();
 //db.save('skywalker', {
@@ -48,6 +49,7 @@ app.configure('production', function(){
 /** For Object Layer Settings */
 editor.Editor(app);
 uniter.Uniter(app);
+maps.Maps(app);
 
 //Routes
 app.get('/', function(req, res){
@@ -162,6 +164,8 @@ app.get('/available', function(req, ret){
 });
 
 app.post('/matching', function(req, ret) {
+    //console.log(req);
+    // console.log(req.body);
 	matcher.SURFMatcher(req, ret);
 	// console.log(req.query.type); // for logging
 	// if(req.query.type == "SURF"){
